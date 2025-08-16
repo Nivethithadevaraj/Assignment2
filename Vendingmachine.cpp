@@ -3,6 +3,12 @@ using namespace std;
 
 bool On=true;
 
+void showOptions() {
+    cout << "\nAvailable Options:\n";
+    cout << "1. Espresso\n";
+    cout << "2. Latte\n";
+    cout << "3. Mocha\n";
+}
 void selectProcess() {
     int choice;
  
@@ -27,6 +33,7 @@ void selectProcess() {
             default:
                 if(choice < 1 || choice > 3) {
                     cout << "Invalid selection!\n";
+                    showOptions();
                 }
                 break;
         }
