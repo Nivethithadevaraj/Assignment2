@@ -23,8 +23,17 @@ int main() {
             cout << "Don't bring umbrella.\n";
             break; // exit loop
         }
- 
+  // (f) Raining → try to find umbrella
+        char found = getYesNo("Did you find the umbrella? (y/n): ");
+        if (found == 'y' || found == 'Y') {
+            cout << "Bring umbrella.\n";
+            break; 
+        } else {
+            cout << "Umbrella not found, re-checking weather...\n";
+        }
      
     }
-     
+      
+    cout << "Stop.\n";
+    return 0;
 }
