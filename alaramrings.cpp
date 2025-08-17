@@ -14,6 +14,21 @@ char getYesNo(string msg) {
     }
     return ch;
 }
+// Step 4: Leave Bed
+void LeaveBed() {
+    cout << "You left the bed.\n";
+    cout << "Turning off the alarm...\n";
+    cout << " Alarm process complete.\n\n";
+}
+ 
+// Step 5: Snooze (only once)
+void Snooze() {
+    cout << "Snoozing alarm for 5 minutes...\n";
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << "\n(5 minutes later...)\n";
+    cout << "Alarm rings again!\n";
+    LeaveBed();  
+}
  // Step 3: Check Time
 void CheckTime() {
     char late = getYesNo("Will you be late if you sleep more? (y/n): ");
