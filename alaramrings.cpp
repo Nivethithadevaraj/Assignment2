@@ -14,8 +14,23 @@ char getYesNo(string msg) {
     }
     return ch;
 }
+ // Step 3: Check Time
+void CheckTime() {
+    char late = getYesNo("Will you be late if you sleep more? (y/n): ");
+    if (late == 'y' || late == 'Y')
+        LeaveBed();
+    else
+        Snooze();
+}
  
-
+// Step 2: Ready to Wake Up
+void ReadyToWakeUp() {
+    char choice = getYesNo("Are you ready to wake up? (y/n): ");
+    if (choice == 'y' || choice == 'Y')
+        LeaveBed();
+    else
+        CheckTime();
+}
 // Step 1: Alarm Rings
 void Alarm() {
     cout << "Alarm rings!\n";
