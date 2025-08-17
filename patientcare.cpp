@@ -12,6 +12,18 @@ char getYesNo(string msg) {
     }
     return ch;
 }
+
+// Step 2: Nurse Availability
+void NurseAvailability() {
+    char nurse = getYesNo("Is nurse available? (y/n): ");
+    if (nurse == 'y' || nurse == 'Y')
+        cout << "Nurse records patient condition.\n";
+    else {
+        cout << "Waiting for nurse...\n";
+        cout << "Now nurse is available. Recording condition.\n";
+    }
+}
+ 
 // Step 1: Registration
 void Registration() {
     char reg = getYesNo("Is patient already registered? (y/n): ");
@@ -26,7 +38,7 @@ int main() {
     cout << "Patient arrives at hospital.\n";
  
     Registration();
-    // NurseAvailability();
+    NurseAvailability();
     // DoctorAvailability();
  
     cout << "Patient leaves hospital.\n";
