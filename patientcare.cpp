@@ -13,6 +13,23 @@ char getYesNo(string msg) {
     return ch;
 }
 
+// Step 4: Assign Doctor
+void AssignDoctor() {
+    cout << "Doctor assigned to patient.\n";
+    //FollowUp();
+}
+ 
+// Step 3: Doctor Availability
+void DoctorAvailability() {
+    char doc = getYesNo("Is doctor available? (y/n): ");
+    if (doc == 'y' || doc == 'Y')
+        AssignDoctor();
+    else {
+        cout << "Waiting for doctor...\n";
+        cout << "Now doctor is available.\n";
+        AssignDoctor();
+    }
+}
 // Step 2: Nurse Availability
 void NurseAvailability() {
     char nurse = getYesNo("Is nurse available? (y/n): ");
@@ -39,7 +56,7 @@ int main() {
  
     Registration();
     NurseAvailability();
-    // DoctorAvailability();
+    DoctorAvailability();
  
     cout << "Patient leaves hospital.\n";
     
