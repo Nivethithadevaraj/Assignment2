@@ -13,10 +13,28 @@ char getYesNo(string msg) {
     return ch;
 }
 
+// Step 6: Medication
+void Medication() {
+    char med = getYesNo("Is medication needed? (y/n): ");
+    if (med == 'y' || med == 'Y')
+        cout << "Doctor prescribes medicines.\n";
+    else
+        cout << "No medication required.\n";
+}
+ 
+// Step 5: Follow-up
+void FollowUp() {
+    char follow = getYesNo("Is follow-up appointment needed? (y/n): ");
+    if (follow == 'y' || follow == 'Y')
+        cout << "Arranging follow-up appointment...\n";
+    else
+        Medication();
+}
+
 // Step 4: Assign Doctor
 void AssignDoctor() {
     cout << "Doctor assigned to patient.\n";
-    //FollowUp();
+    FollowUp();
 }
  
 // Step 3: Doctor Availability
