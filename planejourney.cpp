@@ -25,6 +25,17 @@ void securityScreening() {
         cout << "Give up articles above permitted limits. Return.\n";
     }
 }
+
+bool permitToEnter() {
+    char permit = getYesNo("Permit to enter country? (Y/N): ");
+    if (permit == 'y' || permit == 'Y') {
+        return true;
+    } else {
+        cout << "Send to originate country. Return.\n";
+        return false;
+    }
+}
+
 int main() {
     while (true) {
         // Security Screening
