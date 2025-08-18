@@ -2,6 +2,14 @@
 #include <string>
 #include <cctype>
  
+void registrationFormVerification(bool &isVerified) {
+    char verified;
+    std::cout << "Is your registration form verified? (y/n): ";
+    std::cin >> verified;
+    verified = std::tolower(verified);
+    isVerified = (verified == 'y');
+}
+ 
 
  
 int main() {
