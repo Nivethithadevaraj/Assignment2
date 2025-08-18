@@ -15,6 +15,19 @@ char getYesNo(const string& prompt) {
     }
 }
 
+int getItemType() {
+    int choice;
+    while (true) {
+        cout << "Enter item type: [1] Metal, [1] Dangerous, [2] Restricted: ";
+        cin >> choice;
+        if (choice == 1 || choice == 2 || choice == 3)
+            return choice;
+        cout << "Invalid input. Please enter 1, 2, or 3 only.\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+    }
+}
+ 
 void securityScreening() {
     int item = getItemType();
     if (item == 1) {
