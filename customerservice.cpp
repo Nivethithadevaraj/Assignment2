@@ -1,5 +1,17 @@
 #include <iostream>
 #include <cctype>
+
+void contactCustomerService() {
+    std::cout << "Customer contacts customer service.\n";
+}
+ 
+void redirectSalesSupport() {
+    std::cout << "Redirecting to sales support...\n";
+}
+ 
+void contactTechnicalTeam() {
+    std::cout << "Contacting technical team...\n";
+}
 int main() {
     contactCustomerService();
  
