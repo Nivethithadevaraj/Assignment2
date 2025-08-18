@@ -12,6 +12,19 @@ void redirectSalesSupport() {
 void contactTechnicalTeam() {
     std::cout << "Contacting technical team...\n";
 }
+ 
+void testAndResolveIssue() {
+    char simulateIssue;
+    std::cout << "Simulate issue? (y/n): ";
+    std::cin >> simulateIssue;
+    simulateIssue = std::tolower(simulateIssue);
+ 
+    if (simulateIssue == 'y') {
+        std::cout << "Simulating issue...\n";
+    }
+ 
+    std::cout << "Resolving issue...\n";
+}
 int main() {
     contactCustomerService();
  
