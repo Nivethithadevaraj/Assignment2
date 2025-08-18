@@ -12,7 +12,40 @@ void precautionSteps() {
     std::cout << "Wait for the rescue.\n";
 }
  
-
+void evacuation() {
+    std::cout << "Bring keys, wallet, phone, wet towels.\n";
+    char doorHotSmoke;
+    std::cout << "Is the door hot or is there smoke? (y/n): ";
+    std::cin >> doorHotSmoke;
+    doorHotSmoke = std::tolower(doorHotSmoke);
+ 
+    if (doorHotSmoke == 'y') {
+        precautionSteps();
+        return;
+    }
+ 
+    std::cout << "Leave the building. Go downstairs until you exit.\n";
+    char escaped;
+    std::cout << "Did you escape the building? (y/n): ";
+    std::cin >> escaped;
+    escaped = std::tolower(escaped);
+ 
+    if (escaped == 'y') {
+        std::cout << "You are safe.\n";
+    } else {
+        // Situation: can't escape, need to find a safe room
+        char reachedBalcony;
+        std::cout << "Did you reach the balcony? (y/n): ";
+        std::cin >> reachedBalcony;
+        reachedBalcony = std::tolower(reachedBalcony);
+ 
+        if (reachedBalcony == 'y') {
+            std::cout << "Wait for rescue at the balcony.\n";
+        } else {
+            precautionSteps();
+        }
+    }
+}
  
 int main() {
     int trigger;
