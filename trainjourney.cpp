@@ -2,6 +2,30 @@
 #include <string>
 #include <cctype>
  
+void ticketPurchase(bool &hasTicket, bool &needReservation) {
+    char buyTicket;
+    std::cout << "Do you want to buy a ticket? (y/n): ";
+    std::cin >> buyTicket;
+    buyTicket = std::tolower(buyTicket);
+ 
+    if (buyTicket == 'y') {
+        hasTicket = true;
+        char needRes;
+        std::cout << "Do you need a seat reservation? (y/n): ";
+        std::cin >> needRes;
+        needRes = std::tolower(needRes);
+ 
+        if (needRes == 'y') {
+            needReservation = true;
+            std::cout << "Select your seat.\n";
+        } else {
+            needReservation = false;
+        }
+    } else {
+        hasTicket = false;
+        needReservation = false;
+    }
+}
 int main() {
     bool hasTicket = false;
     bool needReservation = false;
