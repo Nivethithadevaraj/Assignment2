@@ -13,6 +13,32 @@ bool footbridge() {
     }
     return false;
 }
+
+// Function for Tunnel process
+bool tunnel() {
+    char available;
+    cout << "Is tunnel available? (y/n): ";
+    cin >> available;
+    if (available == 'y' || available == 'Y') {
+        cout << "Use the tunnel.\n";
+        return true;
+    }
+    return false;
+}
+ 
+// Function for Crossing process
+bool crossing() {
+    char available;
+    cout << "Is crossing available? (y/n): ";
+    cin >> available;
+    if (available == 'y' || available == 'Y') {
+        return true;
+    } else {
+        cout << "Walk away.\n";
+        return false;
+    }
+}
+ 
 int main() {
     cout << "Pedestrian Crossing Decision Simulation\n";
  
