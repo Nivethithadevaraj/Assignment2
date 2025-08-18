@@ -1,6 +1,17 @@
 #include <iostream>
 #include <cctype>
  
+void contactFireDepartment() {
+    std::cout << "Contact fire department immediately.\n";
+}
+ 
+void precautionSteps() {
+    std::cout << "Do not open the door.\n";
+    std::cout << "Seal all cracks with wet towels.\n";
+    std::cout << "Contact fire department and wave at the windows.\n";
+    std::cout << "Wait for the rescue.\n";
+}
+ 
 
  
 int main() {
