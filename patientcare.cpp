@@ -27,7 +27,6 @@ void FollowUp() {
     char follow = getYesNo("Is follow-up appointment needed? (y/n): ");
     if (follow == 'y' || follow == 'Y')
         cout << "Arranging follow-up appointment...\n";
-    else
         Medication();
 }
 
