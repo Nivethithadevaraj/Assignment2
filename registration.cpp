@@ -10,6 +10,25 @@ void registrationFormVerification(bool &isVerified) {
     isVerified = (verified == 'y');
 }
  
+bool visaProcess() {
+    char needVisa, appliedVisa;
+    std::cout << "Do you need a visa? (y/n): ";
+    std::cin >> needVisa;
+    needVisa = std::tolower(needVisa);
+ 
+    if (needVisa == 'y') {
+        std::cout << "Have you applied for the visa? (y/n): ";
+        std::cin >> appliedVisa;
+        appliedVisa = std::tolower(appliedVisa);
+ 
+        if (appliedVisa == 'n') {
+            std::cout << "Please apply for the visa before proceeding.\n";
+            return false;
+        }
+    }
+    return true;
+}
+ 
 
  
 int main() {
