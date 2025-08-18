@@ -28,7 +28,27 @@ bool visaProcess() {
     }
     return true;
 }
+ void accommodationAssignment() {
+    char needAccom;
+    std::cout << "Do you need accommodation? (y/n): ";
+    std::cin >> needAccom;
+    needAccom = std::tolower(needAccom);
  
+    if (needAccom == 'y') {
+        std::cout << "Accommodation will be assigned to you.\n";
+    }
+}
+ 
+void tutorAssignment() {
+    char extraCredits;
+    std::cout << "Do you have extra credits? (y/n): ";
+    std::cin >> extraCredits;
+    extraCredits = std::tolower(extraCredits);
+ 
+    if (extraCredits == 'y') {
+        std::cout << "Please choose extra courses.\n";
+    }
+}
 bool feePayment() {
     char feesPaid;
     std::cout << "Have you paid the tuition fees? (y/n): ";
