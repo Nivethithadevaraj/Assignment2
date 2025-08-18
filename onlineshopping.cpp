@@ -31,5 +31,16 @@ int main() {
  
         moreItems = getYesNo("Do you want to process another item? (Y/N): ");
     } while (moreItems == 'y' || moreItems == 'Y');
+    cout << "\nSend warehouse goods to customer.\n";
+    cout << "Customer collects goods.\n";
+ 
+    char sellerConfirm = getYesNo("Did seller confirm customer received order? (Y/N): ");
+    if (sellerConfirm == 'y' || sellerConfirm == 'Y') {
+        cout << "Delivery confirmed.\n";
+    } else {
+        cout << "Seller did not confirm delivery.\n";
+    }
+ 
+    cout << "Order process complete.\n";
     return 0;
 }
