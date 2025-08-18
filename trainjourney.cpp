@@ -26,6 +26,24 @@ void ticketPurchase(bool &hasTicket, bool &needReservation) {
         needReservation = false;
     }
 }
+void collectTicket() {
+    std::cout << "Collect your ticket.\n";
+    std::cout << "Check the letter box within 3 days or collect from the machine.\n";
+}
+ 
+void boarding(bool hasReservation) {
+    char haveReservation;
+    std::cout << "Do you have a reservation? (y/n): ";
+    std::cin >> haveReservation;
+    haveReservation = std::tolower(haveReservation);
+ 
+    if (haveReservation == 'y' && hasReservation) {
+        std::cout << "Look for your assigned seat.\n";
+    } else {
+        std::cout << "Look for an unassigned seat.\n";
+    }
+}
+ 
 int main() {
     bool hasTicket = false;
     bool needReservation = false;
