@@ -14,6 +14,16 @@ char getYesNo(const string& prompt) {
         cin.ignore(10000, '\n');
     }
 }
+
+// Energy check function
+void energyCheck() {
+    char highEnergy = getYesNo("Is the organic waste high energy? (Y/N): ");
+    if (highEnergy == 'y' || highEnergy == 'Y') {
+        cout << "Converted to Bio fuel. Return.\n";
+    } else {
+        cout << "Converted to Organic fertilizer. Return.\n";
+    }
+}
 void separateWaste() {
     char isOrganic = getYesNo("Is the waste organic? (Y/N): ");
     if (isOrganic == 'y' || isOrganic == 'Y') {
