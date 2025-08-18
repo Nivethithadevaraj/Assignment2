@@ -39,6 +39,24 @@ bool crossing() {
     }
 }
  
+bool trafficLight() {
+    char available;
+    cout << "Is traffic light available? (y/n): ";
+    cin >> available;
+    if (available == 'y' || available == 'Y') {
+        string color;
+        cout << "What is the light color? (red/green): ";
+        cin >> color;
+        if (color == "green" || color == "Green") {
+            cout << "You may cross.\n";
+            return true;
+        } else {
+            cout << "Light is red, check traffic crossing.\n";
+            return false;
+        }
+    }
+    return false;
+}
 int main() {
     cout << "Pedestrian Crossing Decision Simulation\n";
  
