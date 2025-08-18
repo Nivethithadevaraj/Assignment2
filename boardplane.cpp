@@ -1,4 +1,24 @@
 #include <iostream>
+
+ 
+// Function to get valid user input (y/Y/n/N)
+char getValidInput(const std::string& prompt) {
+    char input;
+    while (true) {
+        std::cout << prompt;
+        std::cin >> input;
+ 
+        if (input == 'y' || input == 'Y' || input == 'n' || input == 'N') {
+            return input;
+        } else {
+            std::cout << "Invalid input! Please enter 'y', 'Y', 'n', or 'N'.\n";
+            // Clear input buffer if needed
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
+    }
+}
+
 int main() {
     std::cout << "===== Plane Boarding System =====\n";
  
