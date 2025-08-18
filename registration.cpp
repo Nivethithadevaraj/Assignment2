@@ -29,6 +29,17 @@ bool visaProcess() {
     return true;
 }
  
+bool feePayment() {
+    char feesPaid;
+    std::cout << "Have you paid the tuition fees? (y/n): ";
+    std::cin >> feesPaid;
+    feesPaid = std::tolower(feesPaid);
+    if (feesPaid == 'n') {
+        std::cout << "Please pay the tuition fees before proceeding.\n";
+        return false;
+    }
+    return true;
+}
 
  
 int main() {
