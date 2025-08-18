@@ -25,6 +25,20 @@ void testAndResolveIssue() {
  
     std::cout << "Resolving issue...\n";
 }
+ 
+void feedback() {
+    char giveFeedback;
+    std::cout << "Would you like to give feedback? (y/n): ";
+    std::cin >> giveFeedback;
+    giveFeedback = std::tolower(giveFeedback);
+ 
+    if (giveFeedback == 'y') {
+        std::cout << "Thank you for your feedback!\n";
+    } else {
+        std::cout << "No feedback given.\n";
+    }
+}
+ 
 int main() {
     contactCustomerService();
  
