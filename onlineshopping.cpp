@@ -14,3 +14,22 @@ char getYesNo(const string& prompt) {
         cin.ignore(10000, '\n');
     }
 }
+int main() {
+    cout << "Order placed.\n";
+ 
+    char moreItems;
+    do {
+        cout << "\nProcessing an item...\n";
+        char inWarehouse = getYesNo("Is the item in the warehouse? (Y/N): ");
+ 
+        if (inWarehouse == 'y' || inWarehouse == 'Y') {
+            cout << "Pack with other orders in the warehouse.\n";
+        } else {
+            cout << "Contact seller.\n";
+            cout << "Seller sends goods to customer.\n";
+        }
+ 
+        moreItems = getYesNo("Do you want to process another item? (Y/N): ");
+    } while (moreItems == 'y' || moreItems == 'Y');
+    return 0;
+}
