@@ -1,101 +1,251 @@
 #include <iostream>
+#include <fstream>
 #include <cctype>
 
+using namespace std;
+
 void contactCustomerService() {
-    std::cout << "Customer contacts customer service.\n";
+    cout << "Customer contacts Customer Service.\n";
 }
- 
+
+void answerQuestion() {
+    cout << "Answering customer's question.\n";
+}
+
 void redirectSalesSupport() {
-    std::cout << "Redirecting to sales support...\n";
+    cout << "Redirecting to Sales Support.\n";
 }
- 
+
 void contactTechnicalTeam() {
-    std::cout << "Contacting technical team...\n";
+    cout << "Contacting Technical Team.\n";
 }
- 
-void testAndResolveIssue() {
-    char simulateIssue;
-    std::cout << "Simulate issue? (y/n): ";
-    std::cin >> simulateIssue;
-    simulateIssue = std::tolower(simulateIssue);
- 
-    if (simulateIssue == 'y') {
-        std::cout << "Simulating issue...\n";
-    }
- 
-    std::cout << "Resolving issue...\n";
+
+void testIssue() {
+    cout << "Testing the issue.\n";
 }
- 
-void feedback() {
-    char giveFeedback;
-    std::cout << "Would you like to give feedback? (y/n): ";
-    std::cin >> giveFeedback;
-    giveFeedback = std::tolower(giveFeedback);
- 
-    if (giveFeedback == 'y') {
-        std::cout << "Thank you for your feedback!\n";
+
+bool simulateIssue() {
+    char simulate;
+    cout << "Can you simulate the issue? (y/n): ";
+    cin >> simulate;
+    return tolower(simulate) == 'y';
+}
+
+void contactCustomerForMoreInfo() {
+    cout << "Contacting customer for more information...\n";
+}
+
+void errorAnalysis() {
+    cout << "Performing error analysis.\n";
+}
+
+void solveIssue() {
+    cout << "Solving the issue.\n";
+}
+
+void updateErrorReport() {
+    cout << "Updating Error Report...\n";
+    ofstream report("error_report.csv", ios::app);
+    if (report.is_open()) {
+        report << "Issue Recorded\n";
+        report.close();
+        cout << "Error Report updated successfully.\n";
     } else {
-        std::cout << "No feedback given.\n";
+        cout << "Error: Unable to open error_report.csv\n";
     }
 }
- 
-int main() {
-    contactCustomerService();
- 
-    char issueType;
-    std::cout << "Is there an issue? (y/n): ";
-    std::cin >> issueType;
-    issueType = std::tolower(issueType);
- 
-    if (issueType == 'n') {
-        std::cout << "No issues. Ending process.\n";
-        feedback();
-        return 0;
+
+void updateErrorDatabase() {
+    cout << "Updating Error Database...\n";
+    ofstream db("error_database.csv", ios::app);
+    if (db.is_open()) {
+        db << "Error logged\n";
+        db.close();
+        cout << "Error Database updated successfully.\n";
+    } else {
+        cout << "Error: Unable to open error_database.csv\n";
     }
- 
-    char salesIssue;
-    std::cout << "Is this a sales issue? (y/n): ";
-    std::cin >> salesIssue;
-    salesIssue = std::tolower(salesIssue);
- 
-    if (salesIssue == 'y') {
-        redirectSalesSupport();
-        feedback();
-        return 0;
+}
+
+bool confirmIssueFixed() {
+    char fixed;
+    cout << "Has the issue been fixed? Confirm with customer (y/n): ";
+    cin >> fixed;
+    return tolower(fixed) == 'y';
+}
+
+void feedbackAndSurvey() {
+    char feedback;
+    cout << "Would you like to give feedback? (y/n): ";
+    cin >> feedback;
+    if (tolower(feedback) == 'y') {
+        cout << "Redirecting to survey...\n";
+    } else {
+        cout << "No feedback given.\n";
     }
- 
-    char techIssue;
-    std::cout << "Is this a technical issue? (y/n): ";
-    std::cin >> techIssue;
-    techIssue = std::tolower(techIssue);
- 
-    if (techIssue == 'y') {
-        contactTechnicalTeam();
- 
-        char newIssue;
-        std::cout << "Is this a new issue? (y/n): ";
-        std::cin >> newIssue;
-        newIssue = std::tolower(newIssue);
- 
-        if (newIssue == 'y') {
-            testAndResolveIssue();
- 
-            char fixed;
-            std::cout << "Is the issue fixed? (y/n): ";
-            std::cin >> fixed;
-            fixed = std::tolower(fixed);
- 
-            if (fixed != 'y') {
-                std::cout << "Issue still not fixed. Contacting technical team again...\n";
-                testAndResolveIssue();
+}
+
+// Handling new technical issue branch
+void handleNewTechnicalIssue() {
+    testIssue();
+
+    bool simulated = simulateIssue();
+
+    if (!simulated) {
+        contactCustomerForMoreInfo();
+        simulated = simulateIssue();
+    }
+
+    if (simulated) {
+        updateErrorReport();
+        updateErrorDatabase();
+
+        errorAnalysis();
+        solveIssue();
+
+        if (!confirmIssueFixed()) {
+            cout << "Issue not fixed after initial resolution.\n";
+            contactCustomerForMoreInfo();
+
+            simulated = simulateIssue();
+            if (simulated) {
+                updateErrorReport();
+                updateErrorDatabase();
+
+                errorAnalysis();
+                solveIssue();
+
+                if (!confirmIssueFixed()) {
+                    cout << "Issue still not fixed after second attempt.\n";
+                }
+            } else {
+                cout << "Could not simulate issue after contacting customer again.\n";
             }
         }
-        feedback();
+    } else {
+        cout << "Could not simulate issue even after contacting customer.\n";
+    }
+}
+
+// Handling existing technical issue branch
+void handleExistingTechnicalIssue() {
+    solveIssue();
+
+    if (!confirmIssueFixed()) {
+        cout << "Issue not fixed after resolution attempt.\n";
+    }
+}
+
+// Handling the *no technical issue* branch but asking for new issue and proceeding
+void handleNoTechnicalIssueBranch() {
+    char newIssue;
+    cout << "Is this a new issue? (y/n): ";
+    cin >> newIssue;
+
+    if (tolower(newIssue) == 'y') {
+        // New issue path for "no technical issue"
+        testIssue();
+
+        bool simulated = simulateIssue();
+
+        if (!simulated) {
+            contactCustomerForMoreInfo();
+            simulated = simulateIssue();
+        }
+
+        if (simulated) {
+            updateErrorReport();
+            updateErrorDatabase();
+
+            errorAnalysis();
+            solveIssue();
+
+            if (!confirmIssueFixed()) {
+                cout << "Issue not fixed after initial resolution.\n";
+                contactCustomerForMoreInfo();
+
+                simulated = simulateIssue();
+                if (simulated) {
+                    updateErrorReport();
+                    updateErrorDatabase();
+
+                    errorAnalysis();
+                    solveIssue();
+
+                    if (!confirmIssueFixed()) {
+                        cout << "Issue still not fixed after second attempt.\n";
+                    }
+                } else {
+                    cout << "Could not simulate issue after contacting customer again.\n";
+                }
+            }
+        } else {
+            cout << "Could not simulate issue even after contacting customer.\n";
+        }
+    } else {
+        // Old issue path for "no technical issue"
+        solveIssue();
+
+        bool simulated = simulateIssue();
+
+        if (simulated) {
+            updateErrorReport();
+            updateErrorDatabase();
+        }
+
+        if (!confirmIssueFixed()) {
+            cout << "Issue not fixed after resolution attempt.\n";
+        }
+    }
+}
+
+int main() {
+    contactCustomerService();
+
+    char enquiry;
+    cout << "Is the customer enquiry? (y/n): ";
+    cin >> enquiry;
+    if (tolower(enquiry) == 'y') {
+        answerQuestion();
+        feedbackAndSurvey();
+        cout << "End of process.\n";
         return 0;
     }
- 
-    std::cout << "No sales or technical issue. Proceeding to feedback.\n";
-    feedback();
- 
+
+    char salesIssue;
+    cout << "Is this a sales issue? (y/n): ";
+    cin >> salesIssue;
+    if (tolower(salesIssue) == 'y') {
+        redirectSalesSupport();
+        feedbackAndSurvey();
+        cout << "End of process.\n";
+        return 0;
+    }
+
+    char technicalIssue;
+    cout << "Is this a technical issue? (y/n): ";
+    cin >> technicalIssue;
+    if (tolower(technicalIssue) == 'y') {
+        contactTechnicalTeam();
+
+        char newIssue;
+        cout << "Is this a new issue? (y/n): ";
+        cin >> newIssue;
+
+        if (tolower(newIssue) == 'y') {
+            handleNewTechnicalIssue();
+        } else {
+            handleExistingTechnicalIssue();
+        }
+        feedbackAndSurvey();
+        cout << "End of process.\n";
+        return 0;
+    }
+
+    // THIS is the fix: If NOT a technical issue, ask if new issue and proceed
+    handleNoTechnicalIssueBranch();
+
+    feedbackAndSurvey();
+    cout << "End of process.\n";
     return 0;
 }
