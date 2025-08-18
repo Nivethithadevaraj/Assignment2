@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// --- Basic Output Functions ---
+
 void contactCustomerService() {
     cout << "Customer contacts Customer Service.\n";
 }
@@ -13,11 +15,11 @@ void answerQuestion() {
 }
 
 void redirectSalesSupport() {
-    cout << "Redirecting to Sales Support.\n";
+    cout << "Redirecting to Sales Support.\nIssue resolved.\n";
 }
 
 void contactTechnicalTeam() {
-    cout << "Contacting Technical Team.\n";
+    cout << "Contacting Technical Team.\nIssue resolved.\n";
 }
 
 void testIssue() {
@@ -85,18 +87,33 @@ void feedbackAndSurvey() {
     }
 }
 
-// Handling new technical issue branch
+// --- Main Issue Handlers ---
+
 void handleNewTechnicalIssue() {
     testIssue();
 
     bool simulated = simulateIssue();
 
-    if (!simulated) {
+    while (!simulated) {
         contactCustomerForMoreInfo();
         simulated = simulateIssue();
     }
 
-    if (simulated) {
+    updateErrorReport();
+    updateErrorDatabase();
+
+    errorAnalysis();
+    solveIssue();
+
+    if (!confirmIssueFixed()) {
+        cout << "Issue not fixed after initial resolution.\n";
+
+        simulated = false;
+        while (!simulated) {
+            contactCustomerForMoreInfo();
+            simulated = simulateIssue();
+        }
+
         updateErrorReport();
         updateErrorDatabase();
 
@@ -104,30 +121,11 @@ void handleNewTechnicalIssue() {
         solveIssue();
 
         if (!confirmIssueFixed()) {
-            cout << "Issue not fixed after initial resolution.\n";
-            contactCustomerForMoreInfo();
-
-            simulated = simulateIssue();
-            if (simulated) {
-                updateErrorReport();
-                updateErrorDatabase();
-
-                errorAnalysis();
-                solveIssue();
-
-                if (!confirmIssueFixed()) {
-                    cout << "Issue still not fixed after second attempt.\n";
-                }
-            } else {
-                cout << "Could not simulate issue after contacting customer again.\n";
-            }
+            cout << "Issue still not fixed after second attempt.\n";
         }
-    } else {
-        cout << "Could not simulate issue even after contacting customer.\n";
     }
 }
 
-// Handling existing technical issue branch
 void handleExistingTechnicalIssue() {
     solveIssue();
 
@@ -136,24 +134,36 @@ void handleExistingTechnicalIssue() {
     }
 }
 
-// Handling the *no technical issue* branch but asking for new issue and proceeding
 void handleNoTechnicalIssueBranch() {
     char newIssue;
     cout << "Is this a new issue? (y/n): ";
     cin >> newIssue;
 
     if (tolower(newIssue) == 'y') {
-        // New issue path for "no technical issue"
         testIssue();
 
         bool simulated = simulateIssue();
 
-        if (!simulated) {
+        while (!simulated) {
             contactCustomerForMoreInfo();
             simulated = simulateIssue();
         }
 
-        if (simulated) {
+        updateErrorReport();
+        updateErrorDatabase();
+
+        errorAnalysis();
+        solveIssue();
+
+        if (!confirmIssueFixed()) {
+            cout << "Issue not fixed after initial resolution.\n";
+
+            simulated = false;
+            while (!simulated) {
+                contactCustomerForMoreInfo();
+                simulated = simulateIssue();
+            }
+
             updateErrorReport();
             updateErrorDatabase();
 
@@ -161,37 +171,20 @@ void handleNoTechnicalIssueBranch() {
             solveIssue();
 
             if (!confirmIssueFixed()) {
-                cout << "Issue not fixed after initial resolution.\n";
-                contactCustomerForMoreInfo();
-
-                simulated = simulateIssue();
-                if (simulated) {
-                    updateErrorReport();
-                    updateErrorDatabase();
-
-                    errorAnalysis();
-                    solveIssue();
-
-                    if (!confirmIssueFixed()) {
-                        cout << "Issue still not fixed after second attempt.\n";
-                    }
-                } else {
-                    cout << "Could not simulate issue after contacting customer again.\n";
-                }
+                cout << "Issue still not fixed after second attempt.\n";
             }
-        } else {
-            cout << "Could not simulate issue even after contacting customer.\n";
         }
     } else {
-        // Old issue path for "no technical issue"
         solveIssue();
 
         bool simulated = simulateIssue();
-
-        if (simulated) {
-            updateErrorReport();
-            updateErrorDatabase();
+        while (!simulated) {
+            contactCustomerForMoreInfo();
+            simulated = simulateIssue();
         }
+
+        updateErrorReport();
+        updateErrorDatabase();
 
         if (!confirmIssueFixed()) {
             cout << "Issue not fixed after resolution attempt.\n";
@@ -199,7 +192,10 @@ void handleNoTechnicalIssueBranch() {
     }
 }
 
+// --- Main Driver ---
+
 int main() {
+    cout << "Customer found an issue.\n";
     contactCustomerService();
 
     char enquiry;
@@ -237,12 +233,12 @@ int main() {
         } else {
             handleExistingTechnicalIssue();
         }
+
         feedbackAndSurvey();
-        cout << "End of process.\n";
         return 0;
     }
 
-    // THIS is the fix: If NOT a technical issue, ask if new issue and proceed
+    // If not enquiry, sales, or technical, fallback to general issue resolution
     handleNoTechnicalIssueBranch();
 
     feedbackAndSurvey();
