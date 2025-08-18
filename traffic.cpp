@@ -57,6 +57,24 @@ bool trafficLight() {
     }
     return false;
 }
+// Function for Traffic Crossing process
+bool trafficCrossing() {
+    char car_left, car_right;
+    cout << "Look left. Is a car approaching? (y/n): ";
+    cin >> car_left;
+    if (car_left == 'y' || car_left == 'Y') {
+        cout << "Wait, car approaching from left.\n";
+        return false;
+    }
+    cout << "Look right. Is a car approaching? (y/n): ";
+    cin >> car_right;
+    if (car_right == 'y' || car_right == 'Y') {
+        cout << "Wait, car approaching from right.\n";
+        return false;
+    }
+    cout << "Safe to cross.\n";
+    return true;
+}
 int main() {
     cout << "Pedestrian Crossing Decision Simulation\n";
  
