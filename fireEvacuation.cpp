@@ -33,7 +33,6 @@ void evacuation() {
     if (escaped == 'y') {
         std::cout << "You are safe.\n";
     } else {
-        // Situation: can't escape, need to find a safe room
         char reachedBalcony;
         std::cout << "Did you reach the balcony? (y/n): ";
         std::cin >> reachedBalcony;
@@ -49,23 +48,19 @@ void evacuation() {
  
 int main() {
     int trigger;
-    std::cout << "Enter 123 if there is a trigger (see or detect fire): ";
+    std::cout << "Enter trigger type: 1(You see the fire), 2(Someone sees the fire), 3(Detector detects smoke): ";
     std::cin >> trigger;
  
-    if (trigger == 123) {
+    if (trigger == 1 || trigger == 2 || trigger == 3) {
         char inBuilding;
         std::cout << "Are you in the building? (y/n): ";
         std::cin >> inBuilding;
         inBuilding = std::tolower(inBuilding);
-        if (inBuilding == 'n') {
-            std::cout << "Contact fire department.\n";
-        } else {
-            char smokeDetector;
-            std::cout << "Did the smoke detector detect smoke? (y/n): ";
-            std::cin >> smokeDetector;
-            smokeDetector = std::tolower(smokeDetector);
  
-            if (smokeDetector == 'y') {
+        if (inBuilding == 'n') {
+            contactFireDepartment();
+        } else {
+            if (trigger == 3) {
                 contactFireDepartment();
                 evacuation();
             } else {
@@ -82,7 +77,7 @@ int main() {
             }
         }
     } else {
-        std::cout << "No triggers detected. No evacuation needed.\n";
+        std::cout << "Invalid trigger type. No action taken.\n";
     }
  
     return 0;
