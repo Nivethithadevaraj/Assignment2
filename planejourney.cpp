@@ -15,6 +15,16 @@ char getYesNo(const string& prompt) {
     }
 }
 
+void securityScreening() {
+    int item = getItemType();
+    if (item == 1) {
+        cout << "Handsearch required. Return.\n";
+    } else if (item == 2) {
+        cout << "Give up dangerous goods. Return.\n";
+    } else if (item == 3) {
+        cout << "Give up articles above permitted limits. Return.\n";
+    }
+}
 int main() {
     while (true) {
         // Security Screening
