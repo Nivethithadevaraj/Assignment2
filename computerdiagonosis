@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+ 
+// Helper for Y/y/N/n validation
+char getYesNo(const string& prompt) {
+    char answer;
+    while (true) {
+        cout << prompt;
+        cin >> answer;
+        if (answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
+            return answer;
+        cout << "Invalid input. Please enter Y/y or N/n only.\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+    }
+}
+int main() {
+    cout << "Computer Diagnosis System:\n";
+    cout << "Start with Power Check...\n";
+    powerCheck();
+    cout << "Error/Diagnosis check...\n";
+    diagnose();
+    cout << "Process ended.\n";
+    return 0;
+}
