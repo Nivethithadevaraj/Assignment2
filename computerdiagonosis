@@ -23,6 +23,21 @@ void diagnose() {
         cout << "Computer is in good condition. Return.\n";
     }
 }
+
+// Power supply check function
+void powerSupplyCheck() {
+    char powerLight = getYesNo("Is power light ON? (Y/N): ");
+    if (powerLight == 'y' || powerLight == 'Y') {
+        cout << "Find specialist. Return.\n";
+        return;
+    }
+    char pluggedIn = getYesNo("Is power plugged into wall? (Y/N): ");
+    if (pluggedIn == 'y' || pluggedIn == 'Y') {
+        cout << "Find specialist. Return.\n";
+    } else {
+        cout << "Plug power into the wall. Return.\n";
+    }
+}
 int main() {
     cout << "Computer Diagnosis System:\n";
     cout << "Start with Power Check...\n";
