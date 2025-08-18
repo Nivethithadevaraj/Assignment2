@@ -48,6 +48,15 @@ void reviewProcess() {
     }
 }
 
+// Initialization process (IP)
+void initializationProcess() {
+    cout << "Insert bank card...\n";
+    string accountNumber;
+    cout << "Enter bank account number: ";
+    cin >> accountNumber;
+    receiverDetails();
+}
+
 int main() {
     cout << "Banking Process Start\n";
     cout << "Initialization process:\n";
