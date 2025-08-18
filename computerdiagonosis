@@ -14,6 +14,15 @@ char getYesNo(const string& prompt) {
         cin.ignore(10000, '\n');
     }
 }
+// Diagnose function
+void diagnose() {
+    char errorMsg = getYesNo("Is there an error message? (Y/N): ");
+    if (errorMsg == 'y' || errorMsg == 'Y') {
+        cout << "Perform Diagnosis.\nGo to Power Check.\n";
+    } else {
+        cout << "Computer is in good condition. Return.\n";
+    }
+}
 int main() {
     cout << "Computer Diagnosis System:\n";
     cout << "Start with Power Check...\n";
