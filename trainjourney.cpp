@@ -44,6 +44,41 @@ void boarding(bool hasReservation) {
     }
 }
  
+bool journey() {
+    char ticketChecked;
+    std::cout << "Has your ticket been checked by the inspector? (y/n): ";
+    std::cin >> ticketChecked;
+    ticketChecked = std::tolower(ticketChecked);
+ 
+    if (ticketChecked == 'n') {
+        char discountTicket;
+        std::cout << "Do you have a discounted ticket? (y/n): ";
+        std::cin >> discountTicket;
+        discountTicket = std::tolower(discountTicket);
+ 
+        if (discountTicket == 'y') {
+            std::cout << "Show valid discount documentation.\n";
+            return true;
+        } else {
+            std::cout << "Ticket invalid. Please buy a valid ticket.\n";
+            return false;
+        }
+    }
+    return true;
+}
+ 
+void arrivalExit() {
+    char arrived;
+    std::cout << "Have you arrived at your destination? (y/n): ";
+    std::cin >> arrived;
+    arrived = std::tolower(arrived);
+ 
+    if (arrived == 'y') {
+        std::cout << "Leave the train.\n";
+    } else {
+        std::cout << "Enjoy your journey!\n";
+    }
+}
 int main() {
     bool hasTicket = false;
     bool needReservation = false;
